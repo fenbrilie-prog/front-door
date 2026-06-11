@@ -75,7 +75,7 @@
   .cbx-r p.cbx-r__hero-meta{margin-top:var(--s4);font-size:12px;color:var(--muted);letter-spacing:.01em;}
   .cbx-r__hero-meta b{color:var(--ink-soft);font-weight:600;}
   @media(min-width:960px){
-    .cbx-r__hero{padding:104px 0 110px;}
+    .cbx-r__hero{padding:145px 0 110px;}
     .cbx-r__hero-grid{grid-template-columns:1.05fr .95fr;gap:var(--s8);}
   }
 
