@@ -405,8 +405,14 @@
     var h = center(hub);
     ics.forEach(function(ic){
       var c = center(ic);
+      var dx = h.x - c.x, dy = h.y - c.y;
+      var dist = Math.sqrt(dx*dx + dy*dy) || 1;
+      var bow = dist * 0.16;                 // gentle orbital arc
+      var mx = (c.x + h.x) / 2, my = (c.y + h.y) / 2;
+      var cx = mx + (-dy / dist) * bow;      // control point offset perpendicular
+      var cy = my + ( dx / dist) * bow;      // consistent direction = swirl around hub
       var p = document.createElementNS(NS,'path');
-      p.setAttribute('d','M '+c.x+' '+c.y+' L '+h.x+' '+h.y);
+      p.setAttribute('d','M '+c.x+' '+c.y+' Q '+cx+' '+cy+' '+h.x+' '+h.y);
       p.setAttribute('class','cbx-r__intg-wire');
       svg.appendChild(p);
     });
@@ -424,6 +430,10 @@
 (function(){
   var modal = document.querySelector('[data-cbx-modal]');
   if(!modal) return;
+  /* Portal to <body>: a transformed/containing ancestor (e.g. Webflow wrappers) would otherwise
+     trap position:fixed, clipping the modal on mobile. Carry the cbx-r class so tokens/box-sizing/font still apply. */
+  modal.classList.add('cbx-r');
+  if(modal.parentNode !== document.body){ document.body.appendChild(modal); }
   function open(){ modal.setAttribute('data-open','true'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
   function close(){ modal.setAttribute('data-open','false'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   document.querySelectorAll('[data-cbx-demo]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); open(); }); });
