@@ -239,6 +239,7 @@
   .cbx-r__out-panel{display:none;}
   .cbx-r__out-panel[data-active="true"]{display:grid;grid-template-columns:1fr;gap:var(--s6);align-items:center;animation:cbx-out-in .34s cubic-bezier(.22,.61,.36,1);}
   @media(min-width:880px){.cbx-r__out-panel[data-active="true"]{grid-template-columns:1fr 1.2fr;gap:var(--s8);}}
+  .cbx-r__out-panel > *{min-width:0;}
   @keyframes cbx-out-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
   .cbx-r__out-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:5px 11px;border-radius:999px;}
   .cbx-r__out-tag--d{background:var(--purple-soft);color:var(--purple);}
